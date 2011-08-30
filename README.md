@@ -13,6 +13,38 @@ as a plugin but it also works excellently as a stand alone library.
 See {file:GettingStarted.md} if you want to learn more about using Active Merchant in your
 applications.
 
+##Changes in this fork
+
+###The paypal_payment_service_for method
+
+    # Paypal form helper, support encrypt data
+    # If you want to encrypt data, pass the following params in options
+    #   :encrypt => true,
+    #   :certs_params => {
+    #     :cert_id => cert_id,
+    #     :cert_dir => 'cert_dir_path',
+    #     :pubcert_file => 'your_pubic_cert_file_name',
+    #     :prvcert_file => 'your_private_cert_file_name',
+    #     :paypal_cert_file => 'your_paypal_cert_file_name'
+    #   }
+    def paypal_payment_service_for(order, account, options = {}, &proc)
+      ...
+    end
+
+
+If you put you certs_params in:
+
+	#{Rails.root}/config/paypal
+
+And name them as:
+
+   *	paypal-pubcert.pem
+   *	paypal-prvkey.pem
+   *	paypal-cert.pem
+
+Then you can use this without passing any params, or you should pass the path params to tell where to find the certs.
+
+
 ## Installation
 
 ### From Git
