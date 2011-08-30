@@ -69,9 +69,9 @@ module ActiveMerchant #:nodoc:
         #   :certs_params => {
         #     :cert_id => cert_id,
         #     :cert_dir => 'cert_dir_path',
-        #     :pubcert => 'pubic_cert_path',
-        #     :prvkey => 'private_cert_path',
-        #     :paypal_cert => 'paypal_cert_path'
+        #     :pubcert_file => 'your_pubic_cert_file_name',
+        #     :prvcert_file => 'your_private_cert_file_name',
+        #     :paypal_cert_file => 'your_paypal_cert_file_name'
         #   }
         def paypal_payment_service_for(order, account, options = {}, &proc)
           raise ArgumentError, "Missing block" unless block_given?
