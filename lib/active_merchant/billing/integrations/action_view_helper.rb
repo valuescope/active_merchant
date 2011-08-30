@@ -124,8 +124,8 @@ module ActiveMerchant #:nodoc:
         def encrypt_for_paypal(values, options = {})
           cert_dir = options[:cert_dir] || "#{Rails.root}/config/paypal"
           pubcert_file = options[:pubcert_file] || "paypal-pubcert.pem"
-          prvcert_file = options[:pubcert_file] || "paypal-prvkey.pem"
-          paypal_cert_file = options[:pubcert_file] || "paypal-cert.pem"
+          prvcert_file = options[:prvcert_file] || "paypal-prvkey.pem"
+          paypal_cert_file = options[:paypal_cert_file] || "paypal-cert.pem"
 
           app_cert_pem = File.read("#{cert_dir}/#{options[:pubcert_file]}")
           app_key_pem = File.read("#{cert_dir}/#{options[:prvcert_file]}")
