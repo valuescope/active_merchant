@@ -5,7 +5,8 @@ module ActiveMerchant #:nodoc:
         autoload :Return, 'active_merchant/billing/integrations/paypal/return.rb'
         autoload :Helper, 'active_merchant/billing/integrations/paypal/helper.rb'
         autoload :Notification, 'active_merchant/billing/integrations/paypal/notification.rb'
-        
+        autoload :RecurringNotification, 'active_merchant/billing/integrations/paypal/recurring_notification.rb'
+
         # Overwrite this if you want to change the Paypal test url
         mattr_accessor :test_url
         self.test_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
