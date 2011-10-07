@@ -33,6 +33,10 @@ module ActiveMerchant #:nodoc:
           end
 
           # pass the shipping cost for whole cart
+          # http://paypaldev.org/yaf_postst17422_Overriding-shipping-for-3rd-party-cart.aspx
+          # there is a bug in the Paypal documentation at 3rd party shopping cart:
+          # You should use handling_cart hidden input instead to carry your shipping fees to Paypal.
+          # <INPUT TYPE="hidden" NAME="handling_cart" VALUE="$myshipping">
           mapping :shipping, 'handling_cart'
 
           # mapping header image
@@ -114,7 +118,6 @@ module ActiveMerchant #:nodoc:
           end
           
           mapping :tax, 'tax'
-          mapping :shipping, 'shipping'
           mapping :cmd, 'cmd'
           mapping :custom, 'custom'
           mapping :src, 'src'
