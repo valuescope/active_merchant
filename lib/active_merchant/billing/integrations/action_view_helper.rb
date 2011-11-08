@@ -96,7 +96,7 @@ module ActiveMerchant #:nodoc:
               paypal_params.merge!(field => value)
             end
 
-            result << hidden_field_tag(:cmd, "_s_xclick")
+            result << hidden_field_tag(:cmd, "_s-xclick")
             result << "\n"
             result << hidden_field_tag(:encrypted, encrypt_for_paypal(paypal_params, certs_params))
           else
@@ -127,9 +127,9 @@ module ActiveMerchant #:nodoc:
           prvcert_file = options[:prvcert_file] || "paypal-prvkey.pem"
           paypal_cert_file = options[:paypal_cert_file] || "paypal-cert.pem"
 
-          app_cert_pem = File.read("#{cert_dir}/#{options[:pubcert_file]}")
-          app_key_pem = File.read("#{cert_dir}/#{options[:prvcert_file]}")
-          paypal_cert_pem = File.read("#{cert_dir}/#{options[:paypal_cert_file]}")
+          app_cert_pem = File.read("#{cert_dir}/#{pubcert_file}")
+          app_key_pem = File.read("#{cert_dir}/#{prvcert_file}")
+          paypal_cert_pem = File.read("#{cert_dir}/#{paypal_cert_file}")
 
           signed = OpenSSL::PKCS7::sign(OpenSSL::X509::Certificate.new(app_cert_pem), OpenSSL::PKey::RSA.new(app_key_pem, ''), values.map { |k, v| "#{k}=#{v}" }.join("\n"), [], OpenSSL::PKCS7::BINARY)
           OpenSSL::PKCS7::encrypt([OpenSSL::X509::Certificate.new(paypal_cert_pem)], signed.to_der, OpenSSL::Cipher::Cipher::new("DES3"), OpenSSL::PKCS7::BINARY).to_s.gsub("\n", "")
