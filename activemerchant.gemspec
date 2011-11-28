@@ -1,4 +1,5 @@
-require File.expand_path('../lib/active_merchant/version', __FILE__)
+$:.push File.expand_path("../lib", __FILE__)
+require 'active_merchant/version'
 
 Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
@@ -19,7 +20,7 @@ Gem::Specification.new do |s|
   
   s.add_dependency('activesupport', '>= 2.3.11')
   s.add_dependency('i18n')
-  s.add_dependency('money')
+  s.add_dependency('money', '<= 3.7.1')
   s.add_dependency('builder', '>= 2.0.0')
   s.add_dependency('braintree', '>= 2.0.0')
   s.add_dependency('json', '>= 1.5.1') if RUBY_VERSION =~ /^1\.8\./
