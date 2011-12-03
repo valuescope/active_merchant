@@ -45,9 +45,9 @@ module ActiveMerchant #:nodoc:
           # add line item details, note the amount_x should be price instead of line total
           def line_items(items = [])
             items.each_with_index do |line, index|
-              add_field("item_name_#{index+1}", line.item.item_name)
-              add_field("amount_#{index+1}", line.price.value_without_unit)
-              add_field("quantity_#{index+1}", line.quantity)
+              add_field("item_name_#{index+1}", line[:name])
+              add_field("amount_#{index+1}", line[:price])
+              add_field("quantity_#{index+1}", line[:quantity])
             end
           end
 
